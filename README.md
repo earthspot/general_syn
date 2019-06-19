@@ -1,6 +1,5 @@
 # general_syn
 
-----
 # TO DO
 
 recognise alt formats for mj
@@ -19,14 +18,14 @@ Import 2-state example from Hui Lab.
 
 Make the addon work with jcon
 
-----
+-
 Wednesday 19 June 2019  00:44:38 ian
 New github repo seems to work ok
 
 gen2 works, and writes source for a working: synt.
 
 
-----
+-
 Tuesday 18 June 2019  22:11:09 ian
 +++ FROM THE HEADER OF '~proj/syn.ijs' ...
 -
@@ -68,29 +67,28 @@ WISHLIST
   dashboard with a toolbar
   build selection of test tapes to be scanned
   adapt f5 to build a "trajectory"
-┌───────────┐
-│TERMINOLOGY│
-└───────────┘
+
+# TERMINOLOGY
 
 SYNTAX MACHINE (syn)
   the assembled syntax machine…
     synt=: ((0;sj;mj) ;: ])"1
     synt=: ((0;sj;mj) ;: ucp)"1
---------------------------------------------------------
+
 SYMBOL SET (aka mapped input)
   boxed set of tape symbols corresp to columns of state-table.
---------------------------------------------------------
+
 STATE [TRANSITION] TABLE
   3-D mx of integers
     ROWS <--> the numbered states
     COLS <--> the boxes of the symbol set
---------------------------------------------------------
+
 SCAN (a tape)
-  apply (sym) to a given tape.
---------------------------------------------------------
+  apply (synt) to a given tape.
+
 TRAJECTORY
   display what happens at each step of a scan.
---------------------------------------------------------
+
 FUNCTION CODE (f)
   an integer between 0 and 5
   becomes the first item of boxed list: syn
@@ -100,7 +98,7 @@ FUNCTION CODE (f)
 3	c+q*r	  	state table index
 4	j,(i-j),c+q*r	both 2 and 3 above
 5	i,j,r,c,s{~<r,c	trace
---------------------------------------------------------
+
 OUTPUT CODE (eg 3 in: 0j3)
   0    no output
 [ 1    j=.i		mark start of wd
@@ -109,7 +107,7 @@ OUTPUT CODE (eg 3 in: 0j3)
 + 4    j=.i  [ ev(i,j,r,c)	emit +wd, mark start of next
 # 5    j=._1 [ ev(i,j,r,c)	emit +wd, park j
 ! 6    			stop
---------------------------------------------------------
 
+-
 Tuesday 18 June 2019  21:18:12 ian
 Repo created today for population with ~proj/syn*.ijs source files
