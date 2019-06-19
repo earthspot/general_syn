@@ -13,6 +13,11 @@ onload_z_=: empty
 PARENTDIR=: (zx i:'/'){.zx=.jpathsep>(4!:4<'zx'){4!:3''[zx=.'syn builtfile'
 
 AABUILT=: '2019-06-19  01:03:24'
+AABUILT=: '2019-06-19  04:44:18'
+AABUILT=: '2019-06-19  04:44:43'
+AABUILT=: '2019-06-19  04:47:06'
+AABUILT=: '2019-06-19  04:48:40'
+AABUILT=: '2019-06-19  04:55:15'
 
 '==================== [syn] forms ===================='
 0 :0
@@ -29,6 +34,14 @@ cocurrent 'syn'
 
 POS=: 810 23 574 490
 
+op=: 3 : 0
+open sw'~Gitsyn/(y).ijs'
+)
+
+lp=: 3 : 0
+load sw'~Gitsyn/(y).ijs'
+)
+
 PROMPT=: 0 : 0
   sjjb sjj
   sjc sj
@@ -42,6 +55,7 @@ LOAD A SYN TO WORK ON…
   op'syn3'
   lp'syn4'
   lp'syn5'
+  lp'syn9'
 )
 
 SYNHELP=: 0 : 0
@@ -440,6 +454,7 @@ smoutput < y
 smoutput synt y
 smoutput display sj
 smoutput date''
+start s
 )
 
 sjc=: j./"1
@@ -538,6 +553,8 @@ wd 'set workbuf font "Menlo" 14'
 wd 'set echobuf text *',echobuf=: ,y
 refresh''
 wd 'psel syn; pmove ' , ":POS
+onload_z_=: do
+i.0 0
 )
 
 syn_z_=: start_syn_
@@ -546,5 +563,4 @@ cocurrent'syn'
 smclear''
 lp'syn0'
 smoutput PROMPT
-start s
 )

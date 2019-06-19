@@ -217,6 +217,7 @@ smoutput < y
 smoutput synt y
 smoutput display sj
 smoutput date''
+start s
 )
 
 sjc=: j./"1    NB. sj (y) as complex table

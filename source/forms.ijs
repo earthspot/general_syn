@@ -14,8 +14,16 @@ cocurrent 'syn'
 
 POS=: 810 23 574 490
 
+op=: 3 : 0
+open sw'~Gitsyn/(y).ijs'
+)
+
+lp=: 3 : 0
+load sw'~Gitsyn/(y).ijs'
+)
+
 PROMPT=: 0 : 0
-  sjjb sjj    NB. boxed symbolic sj
+  sjjb sjj   NB. boxed symbolic sj
   sjc sj     NB. complex sj
   sjj        NB. complex sj
   display sj NB. tabulation of sj
@@ -27,6 +35,7 @@ LOAD A SYN TO WORK ON…
   op'syn3'   NB. [uu] smddmmyy
   lp'syn4'   NB. [uu] cutuuc
   lp'syn5'   NB. [uu] smcut3
+  lp'syn9'   NB. Cut - Lab (3 of 17)
 )
 
 SYNHELP=: 0 : 0

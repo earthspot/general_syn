@@ -20,6 +20,8 @@ wd 'set workbuf font "Menlo" 14'
 wd 'set echobuf text *',echobuf=: ,y
 refresh''
 wd 'psel syn; pmove ' , ":POS
+onload_z_=: do  NB. restore for ad-hoc edits of source files
+i.0 0
 )
 
 syn_z_=: start_syn_
@@ -31,9 +33,9 @@ cocurrent'syn'
 smclear''
 lp'syn0'
 smoutput PROMPT
-start s
 )
 
+NB. start s
 NB. withdrawn
 NB. i.0 0
 NB. lp'syn5'
