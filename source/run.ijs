@@ -3,22 +3,23 @@ NB. general_syn repo - run
 Tuesday 18 June 2019  21:37:47
 -
 open BUILTFILE
+open TESTFILE
 )
 
 cocurrent 'base'
 
 NB.=================================
 GIT=. '~Gitsyn'  NB. for JAL release
+APP=. 'syn'
 NB.=================================
 
-BUILTFILE_z_=: GIT,'/syn.ijs'
+BUILTFILE_z_=: GIT,'/',APP,'.ijs'
 TESTFILE_z_=: GIT,'/test/*.ijs'
 
 NB. ---------------------------------------------------------
 
-clear 'syn'
+clear APP
 load BUILTFILE
-
 smoutput sw'+++ run.ijs: BUILTFILE=[(BUILTFILE)] loaded ok'
 
 loadall TESTFILE

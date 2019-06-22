@@ -1,6 +1,6 @@
 NB. general_syn repo - build
 0 :0
-Tuesday 18 June 2019  21:34:57
+Thursday 20 June 2019  02:23:35
 -
 open BUILTFILE
 )
@@ -9,6 +9,7 @@ cocurrent 'base'
 
 NB.==================================
 GIT=. '~Gitsyn'  NB. for JAL release
+APP=. 'syn'
 NB.==================================
 
 NB. TO LOAD JUST THIS BUILTFILE:  fn⌘F9
@@ -20,9 +21,7 @@ date_z_=: 6!:0 bind 'YYYY-MM-DD  hh:mm:ss'
 
 NOW=: date''
 HEADERFILE_z_=: GIT,'/source/header.ijs'
-BUILTFILE_z_=: GIT,'/syn.ijs'
-
-RB=: ')'
+BUILTFILE_z_=: GIT,'/',APP,'.ijs'
 
   NB. Modify header.ijs with current date written into it
 HEADERFILE fappend~ LF,'AABUILT=: ',quote NOW
