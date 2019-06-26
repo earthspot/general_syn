@@ -61,6 +61,9 @@ smoutput sysevent,'=: empty'
 
 syn_resize=: empty
 
+syn_bnTrace_button=: trace
+
+0 :0
 syn_bnTrace_button=: 3 : 0
 if. 'empty'-: 5!:5<'sllog' do.
   sllog=: smoutput&llog

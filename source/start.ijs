@@ -1,7 +1,7 @@
 	NB. syn - start.ijs
 '==================== [syn] start ===================='
 0 :0
-Wednesday 19 June 2019  00:40:10
+Saturday 22 June 2019  18:36:26
 )
 
 cocurrent 'syn'
@@ -13,10 +13,10 @@ start=: 3 : 0
 load PARENTDIR,'/manifest.ijs'  NB. overrides VERSION
 window_close''
 wd SYNFORM
-wd 'set echobuf font "Menlo" 14'
-wd 'set edisbuf font "Menlo" 14'
-wd 'set pane font "Menlo" 14'
-wd 'set workbuf font "Menlo" 14'
+NB. wd 'set echobuf font "Menlo" 14'
+NB. wd 'set edisbuf font "Menlo" 14'
+NB. wd 'set pane font "Menlo" 14'
+NB. wd 'set workbuf font "Menlo" 14'
 wd 'set echobuf text *',echobuf=: ,y
 refresh''
 wd 'psel syn; pmove ' , ":POS
@@ -26,20 +26,9 @@ i.0 0
 
 syn_z_=: start_syn_
 
-NB. syn_z_=: load bind '~proj/syn.ijs'
-
 immexj 0 : 0  NB. execute in immediate mode after load...
 cocurrent'syn'
 smclear''
-lp'syn0'
+synload 'syn9'
 smoutput PROMPT
 )
-
-NB. start s
-NB. withdrawn
-NB. i.0 0
-NB. lp'syn5'
-NB. smoutput PROMPT
-NB. display sj
-NB. scan 'firstwd secondwd + everything else NB. and a comment 2nd row'
-NB. scan s

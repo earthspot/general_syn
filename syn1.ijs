@@ -25,7 +25,7 @@ mj=: < LF ; NUL,SP,TAB
 
   NB. TEST TAPES (s)
 s=: 'firstwd',SP,'the rest is description'
-s=: 'firstwd',TAB,'the rest is description'
-s=: SP,SP,'firstwd',SP,SP,'the rest is description',SP,SP,SP
+s1=: 'firstwd',TAB,'the rest is description'
+s2=: SP,SP,'firstwd',SP,SP,'the rest is description',SP,SP,SP
 
 onload 'identify s'

@@ -14,12 +14,13 @@ cocurrent 'syn'
 
 POS=: 810 23 574 490
 
-op=: 3 : 0
+synopen=: 3 : 0
 open sw'~Gitsyn/(y).ijs'
 )
 
-lp=: 3 : 0
-load sw'~Gitsyn/(y).ijs'
+synload=: 3 : 0
+NB. look for finename (y) as a sibling of the app script
+load sw'(PARENTDIR)/(y).ijs'
 )
 
 PROMPT=: 0 : 0
@@ -29,13 +30,13 @@ PROMPT=: 0 : 0
   display sj NB. tabulation of sj
 
 LOAD A SYN TO WORK ON…
-  lp'syn0'   NB. the J parser: default x-arg of monadic Words (;:)
-  lp'syn1'   NB. <first word terminated by whitespace> ; <remainder>
-  lp'syn2'   NB. [uu] smtime
-  op'syn3'   NB. [uu] smddmmyy
-  lp'syn4'   NB. [uu] cutuuc
-  lp'syn5'   NB. [uu] smcut3
-  lp'syn9'   NB. Cut - Lab (3 of 17)
+  synload'syn0'   NB. the J parser: default x-arg of monadic Words (;:)
+  synload'syn1'   NB. <first word terminated by whitespace> ; <remainder>
+  synload'syn2'   NB. [uu] smtime
+  synopen'syn3'   NB. [uu] smddmmyy
+  synload'syn4'   NB. [uu] cutuuc
+  synload'syn5'   NB. [uu] smcut3
+  synload'syn9'   NB. Cut - Lab (3 of 17)
 )
 
 SYNHELP=: 0 : 0
@@ -100,5 +101,9 @@ bin h;
  cc bnHelp button;cn "HELP";
 bin z;
 cc sbar static; cn "Type into field IN - else click a line to edit the state table...";
-pshow
+set echobuf font "Menlo" 14;
+set edisbuf font "Menlo" 14;
+set pane font "Menlo" 14;
+set workbuf font "Menlo" 14;
+pshow;
 )

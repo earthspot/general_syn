@@ -12,12 +12,15 @@ onload_z_=: empty
 
 PARENTDIR=: (zx i:'/'){.zx=.jpathsep>(4!:4<'zx'){4!:3''[zx=.'syn builtfile'
 
-AABUILT=: '2019-06-19  01:03:24'
-AABUILT=: '2019-06-19  04:44:18'
-AABUILT=: '2019-06-19  04:44:43'
-AABUILT=: '2019-06-19  04:47:06'
-AABUILT=: '2019-06-19  04:48:40'
-AABUILT=: '2019-06-19  04:55:15'
+AABUILT=: '2019-06-22  18:18:54'
+AABUILT=: '2019-06-22  18:21:01'
+AABUILT=: '2019-06-22  18:27:42'
+AABUILT=: '2019-06-22  18:30:03'
+AABUILT=: '2019-06-22  18:30:30'
+AABUILT=: '2019-06-22  18:31:32'
+AABUILT=: '2019-06-22  18:32:45'
+AABUILT=: '2019-06-22  18:35:45'
+AABUILT=: '2019-06-22  23:55:22'
 
 '==================== [syn] forms ===================='
 0 :0
@@ -34,12 +37,12 @@ cocurrent 'syn'
 
 POS=: 810 23 574 490
 
-op=: 3 : 0
+synopen=: 3 : 0
 open sw'~Gitsyn/(y).ijs'
 )
 
-lp=: 3 : 0
-load sw'~Gitsyn/(y).ijs'
+synload=: 3 : 0
+load sw'(PARENTDIR)/(y).ijs'
 )
 
 PROMPT=: 0 : 0
@@ -49,13 +52,13 @@ PROMPT=: 0 : 0
   display sj
 
 LOAD A SYN TO WORK ON…
-  lp'syn0'
-  lp'syn1'
-  lp'syn2'
-  op'syn3'
-  lp'syn4'
-  lp'syn5'
-  lp'syn9'
+  synload'syn0'
+  synload'syn1'
+  synload'syn2'
+  synopen'syn3'
+  synload'syn4'
+  synload'syn5'
+  synload'syn9'
 )
 
 SYNHELP=: 0 : 0
@@ -120,7 +123,30 @@ bin h;
  cc bnHelp button;cn "HELP";
 bin z;
 cc sbar static; cn "Type into field IN - else click a line to edit the state table...";
-pshow
+set echobuf font "Menlo" 14;
+set edisbuf font "Menlo" 14;
+set pane font "Menlo" 14;
+set workbuf font "Menlo" 14;
+pshow;
+)
+'==================== [syn] utilities ===================='
+
+cocurrent 'z'
+
+loadall=: [: load&.> ([: pathof&.> <&jpath) ,&.> [: {."1 [: 1!:0 <&jpath
+
+trace=: 3 : 0
+notrace=. 3 : '''empty''-:5!:5<''sllog'''
+if. y-:1 do.
+  msg=: smoutput&sw
+  sllog=: smoutput&llog
+elseif. y-:0 do.
+  msg=: empty
+  sllog=: empty
+elseif. 0=#y do. trace notrace'' return.
+elseif. do. ssw '>>> trace: invalid option: [(y)]'
+end.
+msg '+++ trace_(>coname$0)_ : (-.notrace$0)'
 )
 
 '==================== [syn] handlers ===================='
@@ -184,6 +210,9 @@ smoutput sysevent,'=: empty'
 
 syn_resize=: empty
 
+syn_bnTrace_button=: trace
+
+0 :0
 syn_bnTrace_button=: 3 : 0
 if. 'empty'-: 5!:5<'sllog' do.
   sllog=: smoutput&llog
@@ -534,7 +563,7 @@ wd 'psel syn; set workbuf text *',":z
 
 '==================== [syn] start ===================='
 0 :0
-Wednesday 19 June 2019  00:40:10
+Saturday 22 June 2019  18:36:26
 )
 
 cocurrent 'syn'
@@ -546,10 +575,6 @@ start=: 3 : 0
 load PARENTDIR,'/manifest.ijs'
 window_close''
 wd SYNFORM
-wd 'set echobuf font "Menlo" 14'
-wd 'set edisbuf font "Menlo" 14'
-wd 'set pane font "Menlo" 14'
-wd 'set workbuf font "Menlo" 14'
 wd 'set echobuf text *',echobuf=: ,y
 refresh''
 wd 'psel syn; pmove ' , ":POS
@@ -558,9 +583,10 @@ i.0 0
 )
 
 syn_z_=: start_syn_
+
 immexj 0 : 0
 cocurrent'syn'
 smclear''
-lp'syn0'
+synload 'syn9'
 smoutput PROMPT
 )
