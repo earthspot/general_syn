@@ -7,6 +7,7 @@ Wednesday 19 June 2019  00:40:18
 cocurrent 'syn'
 
 msg=: sllog=: empty
+IJRD=: 0 _1 0 _1            NB. default ijrd
 DIRTY=: 0
 UCP=: 0                     NB. 1==use widechars 0==use ASCII
 OUTCODE=: ' [:]+#!'         NB. output codes as literals
@@ -44,6 +45,8 @@ NB. wd 'set pane items *',(x2f dquote"1 content'')-.LF
 wd 'set pane items *', , dquote"1 content''
 wd 'set edisbuf text *',edisbuf=: ''
 work echobuf
+fill_table real sjj	NB. from tempforms 210
+NB. cell_colors imag sjj	NB. from tempforms 210
 )
 
 0 :0
@@ -202,9 +205,9 @@ end.
 
 make_synt=: 3 : 0
 if. UCP do.
-  synt=: ((0;sj;mj) ;: ucp)"1
+  synt=: ((0;sj;mj;ijrd) ;: ucp)"1
 else.
-  synt=: ((0;sj;mj) ;: ])"1
+  synt=: ((0;sj;mj;ijrd) ;: ])"1
 end.
 i.0 0
 )
@@ -295,4 +298,83 @@ end.
 wd 'psel syn; set workbuf text *',":z
 )
 
-NB. onload 'gen2$0'
+NB. ============= from tempforms 210 ===============
+
+syn_states_button=:	empty
+syn_states_mark=:		empty
+syn_states_mbldbl=:	empty
+syn_states_mbldown=:	empty
+syn_states_mblup=:		empty
+syn_states_select=:	empty
+syn_resize=:		empty
+
+syn_default=: needsHnd	NB. defined in: handy.ijs
+
+0 :0
+display=: 3 : 0
+  NB. tabulate sj (y)
+'h w'=.$ z=. sjjb sjj=: sjc y
+z=. z ,.~ STATE
+z=. z ,.~ <"0 i.h
+NB. z=. z ,~ '#▼';'STATE`▼';SYMBOL
+z=. z ,~ '#';'STATE`';SYMBOL
+NB. z=. z ,~ SP;'SYMBOL#▶';<"0 i.w
+)
+
+fill_table=: 3 : 0
+z=. }. display sj  NB. boxed display EXCLUDING hdr: SYMBOL
+wd 'psel syn'
+wd 'set states font "Menlo" 14'
+wd 'set states shape ',":SHAPE=:$z
+NB. wd 'set states protect ',": , SHAPE$ 1 0 0 0 0  NB. protect col0
+NB. wd 'set states hdr ',o4b dquote each '#';'STATE`' ; SYMBOL
+wd 'set states hdr ',o4b dquote each '#▼';'STATE`▼';SYMBOL
+wd 'set states data ',o4b dquote@": each ,z
+wd 'set states resizecol'
+)
+
+0 :0
+fill_table=: 3 : 0
+wd 'psel syn'
+wd 'set states font "Menlo" 14'
+wd 'set states shape ',":SHAPE=.$y
+wd 'set states protect ',": , SHAPE$ 1 0 0 0 0  NB. protect col0
+NB. wd 'set states hdr *col0 col1 col2 col3 col4'
+wd 'set states data *', ": , y
+wd 'set states resizecol'
+)
+
+get_table=: 3 : 0
+wd 'psel syn'
+z=. wd 'get states table'
+($sjj) $ b4f z rplc DEL ; LF
+)
+
+PALETTE=: '#',each b4f }: 0 : 0
+ffffff
+ffcccc
+ff0000
+ccffcc
+00ff00
+ccccff
+0000ff
+)
+
+cell_colors=: 3 : 0
+wd 'psel syn'
+wd 'set states block ',": , 0,. <: $y
+wd 'set states background ',o4b ,y{PALETTE
+)
+
+0 :0
+syn_run=: 3 : 0	NB. UNUSED in this app <<<<<<<<<<<<<<<<<<<<<<<<
+smclear''
+smoutput '+++ syn_run: ENTER…' ,LF, '   cocurrent ''form210'''
+NB.
+syn_close''
+wd FM
+fill_table real sjj
+cell_colors imag sjj
+wd 'pmove 0 22 400 0'
+wd 'psel syn; pshow'	NB. paranoid psel, but good to use
+)

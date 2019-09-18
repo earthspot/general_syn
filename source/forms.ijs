@@ -1,25 +1,29 @@
 	NB. syn - forms.ijs
 '==================== [syn] forms ===================='
 0 :0
-Tuesday 18 June 2019  22:21:04
+Tuesday 17 September 2019  09:33:27
 -
   wd'psel syn; qform'
   sminfo_z_=: wdinfo_z_=: echo_z_
  ]POS=: wd 'psel syn; getp xywh'
 -
 >>> cc sbar static MUST be followed by cn "…"; else no-workee
+-
+Replace pane listbox with: states table, as per: tempforms 209
 )
 
 cocurrent 'syn'
 
 POS=: 810 23 574 490
+POS=: 0 0 0 0	NB. topleft, min size necessary
 
 synopen=: 3 : 0
 open sw'~Gitsyn/(y).ijs'
 )
 
 synload=: 3 : 0
-NB. look for finename (y) as a sibling of the app script
+NB. look for filename (y) as a sibling of the app script
+ijrd=: IJRD  NB. init to default, possibly reassigned by (y).ijs
 load sw'(PARENTDIR)/(y).ijs'
 )
 
@@ -33,7 +37,7 @@ LOAD A SYN TO WORK ON…
   synload'syn0'   NB. the J parser: default x-arg of monadic Words (;:)
   synload'syn1'   NB. <first word terminated by whitespace> ; <remainder>
   synload'syn2'   NB. [uu] smtime
-  synopen'syn3'   NB. [uu] smddmmyy
+ synopen'syn3'   NB. [uu] smddmmyy
   synload'syn4'   NB. [uu] cutuuc
   synload'syn5'   NB. [uu] smcut3
   synload'syn9'   NB. Cut - Lab (3 of 17)
@@ -60,6 +64,7 @@ space	no output
 
 SYNFORM=: 0 : 0
 pc syn;pn SYN;
+cc states table;
 cc pane listbox;
 bin h;
  cc lb0 static; cn "#:";

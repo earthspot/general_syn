@@ -29,6 +29,6 @@ syn_z_=: start_syn_
 immexj 0 : 0  NB. execute in immediate mode after load...
 cocurrent'syn'
 smclear''
-synload 'syn9'
+synload 'syn0'
 smoutput PROMPT
 )

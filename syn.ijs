@@ -21,27 +21,45 @@ AABUILT=: '2019-06-22  18:31:32'
 AABUILT=: '2019-06-22  18:32:45'
 AABUILT=: '2019-06-22  18:35:45'
 AABUILT=: '2019-06-22  23:55:22'
+AABUILT=: '2019-09-16  17:05:18'
+AABUILT=: '2019-09-16  17:35:04'
+AABUILT=: '2019-09-16  17:46:58'
+AABUILT=: '2019-09-16  18:28:10'
+AABUILT=: '2019-09-16  20:38:46'
+AABUILT=: '2019-09-18  02:57:23'
+AABUILT=: '2019-09-18  03:00:22'
+AABUILT=: '2019-09-18  03:02:41'
+AABUILT=: '2019-09-18  03:14:32'
+AABUILT=: '2019-09-18  03:17:58'
+AABUILT=: '2019-09-18  03:45:10'
+AABUILT=: '2019-09-18  03:46:56'
+AABUILT=: '2019-09-18  03:51:45'
+AABUILT=: '2019-09-18  03:58:28'
 
 '==================== [syn] forms ===================='
 0 :0
-Tuesday 18 June 2019  22:21:04
+Tuesday 17 September 2019  09:33:27
 -
   wd'psel syn; qform'
   sminfo_z_=: wdinfo_z_=: echo_z_
  ]POS=: wd 'psel syn; getp xywh'
 -
 >>> cc sbar static MUST be followed by cn "…"; else no-workee
+-
+Replace pane listbox with: states table, as per: tempforms 209
 )
 
 cocurrent 'syn'
 
 POS=: 810 23 574 490
+POS=: 0 0 0 0
 
 synopen=: 3 : 0
 open sw'~Gitsyn/(y).ijs'
 )
 
 synload=: 3 : 0
+ijrd=: IJRD
 load sw'(PARENTDIR)/(y).ijs'
 )
 
@@ -55,7 +73,7 @@ LOAD A SYN TO WORK ON…
   synload'syn0'
   synload'syn1'
   synload'syn2'
-  synopen'syn3'
+ synopen'syn3'
   synload'syn4'
   synload'syn5'
   synload'syn9'
@@ -82,6 +100,7 @@ space	no output
 
 SYNFORM=: 0 : 0
 pc syn;pn SYN;
+cc states table;
 cc pane listbox;
 bin h;
  cc lb0 static; cn "#:";
@@ -280,6 +299,7 @@ Wednesday 19 June 2019  00:40:18
 cocurrent 'syn'
 
 msg=: sllog=: empty
+IJRD=: 0 _1 0 _1
 DIRTY=: 0
 UCP=: 0
 OUTCODE=: ' [:]+#!'
@@ -315,6 +335,7 @@ sllog 'refresh'
 wd 'set pane items *', , dquote"1 content''
 wd 'set edisbuf text *',edisbuf=: ''
 work echobuf
+fill_table real sjj
 )
 
 0 :0
@@ -468,9 +489,9 @@ end.
 
 make_synt=: 3 : 0
 if. UCP do.
-  synt=: ((0;sj;mj) ;: ucp)"1
+  synt=: ((0;sj;mj;ijrd) ;: ucp)"1
 else.
-  synt=: ((0;sj;mj) ;: ])"1
+  synt=: ((0;sj;mj;ijrd) ;: ])"1
 end.
 i.0 0
 )
@@ -560,6 +581,78 @@ elseif. isEmpty z do.
 end.
 wd 'psel syn; set workbuf text *',":z
 )
+syn_states_button=:	empty
+syn_states_mark=:		empty
+syn_states_mbldbl=:	empty
+syn_states_mbldown=:	empty
+syn_states_mblup=:		empty
+syn_states_select=:	empty
+syn_resize=:		empty
+
+syn_default=: needsHnd
+
+0 :0
+display=: 3 : 0
+
+'h w'=.$ z=. sjjb sjj=: sjc y
+z=. z ,.~ STATE
+z=. z ,.~ <"0 i.h
+z=. z ,~ '#';'STATE`';SYMBOL
+)
+
+fill_table=: 3 : 0
+z=. }. display sj
+wd 'psel syn'
+wd 'set states font "Menlo" 14'
+wd 'set states shape ',":SHAPE=:$z
+wd 'set states hdr ',o4b dquote each '#▼';'STATE`▼';SYMBOL
+wd 'set states data ',o4b dquote@": each ,z
+wd 'set states resizecol'
+)
+
+0 :0
+fill_table=: 3 : 0
+wd 'psel syn'
+wd 'set states font "Menlo" 14'
+wd 'set states shape ',":SHAPE=.$y
+wd 'set states protect ',": , SHAPE$ 1 0 0 0 0
+wd 'set states data *', ": , y
+wd 'set states resizecol'
+)
+
+get_table=: 3 : 0
+wd 'psel syn'
+z=. wd 'get states table'
+($sjj) $ b4f z rplc DEL ; LF
+)
+
+PALETTE=: '#',each b4f }: 0 : 0
+ffffff
+ffcccc
+ff0000
+ccffcc
+00ff00
+ccccff
+0000ff
+)
+
+cell_colors=: 3 : 0
+wd 'psel syn'
+wd 'set states block ',": , 0,. <: $y
+wd 'set states background ',o4b ,y{PALETTE
+)
+
+0 :0
+syn_run=: 3 : 0
+smclear''
+smoutput '+++ syn_run: ENTER…' ,LF, '   cocurrent ''form210'''
+syn_close''
+wd FM
+fill_table real sjj
+cell_colors imag sjj
+wd 'pmove 0 22 400 0'
+wd 'psel syn; pshow'
+)
 
 '==================== [syn] start ===================='
 0 :0
@@ -587,6 +680,6 @@ syn_z_=: start_syn_
 immexj 0 : 0
 cocurrent'syn'
 smclear''
-synload 'syn9'
+synload 'syn0'
 smoutput PROMPT
 )
