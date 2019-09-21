@@ -35,6 +35,33 @@ AABUILT=: '2019-09-18  03:45:10'
 AABUILT=: '2019-09-18  03:46:56'
 AABUILT=: '2019-09-18  03:51:45'
 AABUILT=: '2019-09-18  03:58:28'
+AABUILT=: '2019-09-18  10:53:52'
+AABUILT=: '2019-09-18  11:02:21'
+AABUILT=: '2019-09-18  11:04:03'
+AABUILT=: '2019-09-18  11:07:29'
+AABUILT=: '2019-09-18  11:12:20'
+AABUILT=: '2019-09-18  11:28:39'
+AABUILT=: '2019-09-18  11:37:07'
+AABUILT=: '2019-09-18  11:57:42'
+AABUILT=: '2019-09-18  12:05:44'
+AABUILT=: '2019-09-18  12:23:51'
+AABUILT=: '2019-09-18  12:25:19'
+AABUILT=: '2019-09-18  12:26:48'
+AABUILT=: '2019-09-18  12:37:08'
+AABUILT=: '2019-09-18  12:39:21'
+AABUILT=: '2019-09-18  12:44:29'
+AABUILT=: '2019-09-21  09:28:11'
+AABUILT=: '2019-09-21  09:29:54'
+AABUILT=: '2019-09-21  09:37:31'
+AABUILT=: '2019-09-21  09:38:47'
+AABUILT=: '2019-09-21  09:48:23'
+AABUILT=: '2019-09-21  09:54:46'
+AABUILT=: '2019-09-21  10:03:07'
+AABUILT=: '2019-09-21  11:36:49'
+AABUILT=: '2019-09-21  11:37:18'
+AABUILT=: '2019-09-21  11:38:14'
+AABUILT=: '2019-09-21  11:57:30'
+AABUILT=: '2019-09-21  12:32:41'
 
 '==================== [syn] forms ===================='
 0 :0
@@ -49,19 +76,10 @@ Tuesday 17 September 2019  09:33:27
 Replace pane listbox with: states table, as per: tempforms 209
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 POS=: 810 23 574 490
 POS=: 0 0 0 0
-
-synopen=: 3 : 0
-open sw'~Gitsyn/(y).ijs'
-)
-
-synload=: 3 : 0
-ijrd=: IJRD
-load sw'(PARENTDIR)/(y).ijs'
-)
 
 PROMPT=: 0 : 0
   sjjb sjj
@@ -127,14 +145,14 @@ bin h;
  cc bnundo button;cn "undo";
  cc bnnewST button;cn "new STATE";
  cc bndelST button;cn "del STATE";
- cc bns button;cn "=s";
- cc bns1 button;cn "=s1";
- cc bns2 button;cn "=s2";
- cc bns3 button;cn "=s3";
+ cc bns button;cn "=t";
+ cc bns1 button;cn "=t1";
+ cc bns2 button;cn "=t2";
+ cc bns3 button;cn "=t3";
 bin z;
 bin h;
  cc bnTrace button;cn "trace";
- cc bn1 button;cn "bn1";
+ cc bn1 button;cn "PROMPT";
  cc bn2 button;cn "bn2";
  cc bn3 button;cn "bn3";
  cc bn4 button;cn "bn4";
@@ -173,35 +191,37 @@ msg '+++ trace_(>coname$0)_ : (-.notrace$0)'
 Tuesday 18 June 2019  22:47:28
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 syn_bngen_button=: gen
 
 syn_bnundo_button=: undo
 
-syn_bnHelp_button=: 3 : 'tv SYNHELP'
+syn_bn1_button=:	3 : 'textview_jqtide_ PROMPT'
+
+syn_bnHelp_button=: 3 : 'textview_jqtide_ SYNHELP'
 
 syn_bns_button=: 3 : 0
 
-wd 'set echobuf text *',echobuf=: s
+wd 'set echobuf text *',echobuf=: t
 syn_echobuf_changed''
 )
 
 syn_bns1_button=: 3 : 0
 
-wd 'set echobuf text *',echobuf=: s1
+wd 'set echobuf text *',echobuf=: t1
 syn_echobuf_changed''
 )
 
 syn_bns2_button=: 3 : 0
 
-wd 'set echobuf text *',echobuf=: s2
+wd 'set echobuf text *',echobuf=: t2
 syn_echobuf_changed''
 )
 
 syn_bns3_button=: 3 : 0
 
-wd 'set echobuf text *',echobuf=: s3
+wd 'set echobuf text *',echobuf=: t3
 syn_echobuf_changed''
 )
 
@@ -296,14 +316,14 @@ refresh''
 Wednesday 19 June 2019  00:40:18
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 msg=: sllog=: empty
 IJRD=: 0 _1 0 _1
 DIRTY=: 0
 UCP=: 0
 OUTCODE=: ' [:]+#!'
-s=: s1=: s2=: s3=: 'unset'
+t=: t1=: t2=: t3=: '<UNSET>'
 'nix shf cmd opt'=: 0 1 2 4
 
 absent=: [: +./ 0 > [: nc ;:
@@ -436,7 +456,7 @@ smoutput '".''synt=: '',LF-.~ 0 :','0'
 smoutput (-y)&(]\) 5!:5 <'synt'
 smoutput ')'
 smoutput 'NB','.',(y-3)#'-'
-smoutput 'smoutput synt ',quote s
+smoutput 'smoutput synt ',quote t
 )
 
 gen2=: 3 : 0
@@ -456,7 +476,7 @@ if. UCP do. smoutput 'synt=: ((0;sj;mj) ;: ucp)"1'
 else.       smoutput 'synt=: ((0;sj;mj) ;: ])"1'
 end.
 smoutput li
-smoutput 'smoutput synt ',quote s
+smoutput 'smoutput synt ',quote t
 clone''
 smclear''
 smoutput <'synt -generated in new temp file'
@@ -488,6 +508,7 @@ end.
 )
 
 make_synt=: 3 : 0
+
 if. UCP do.
   synt=: ((0;sj;mj;ijrd) ;: ucp)"1
 else.
@@ -498,13 +519,14 @@ i.0 0
 
 identify_z_=: identify=: 3 : 0
 
+
 make_synt''
 smoutput 'NAME:' ; NAME
 smoutput < y
 smoutput synt y
 smoutput display sj
 smoutput date''
-start s
+start t
 )
 
 sjc=: j./"1
@@ -626,14 +648,27 @@ z=. wd 'get states table'
 ($sjj) $ b4f z rplc DEL ; LF
 )
 
+0 :0
+=========================================================
+OUTPUT CODES
+  0    no output            pass over                     white
+[ 1    j=.i		mark start of wd             brown
+: 2    j=.i  [ ew(i,j,r,c)	emit wd, mark start of next  dk.green
+] 3    j=._1 [ ew(i,j,r,c)	emit wd, park j              lt.green
++ 4    j=.i  [ ev(i,j,r,c)	emit +wd, mark start of next dk.blue
+# 5    j=._1 [ ev(i,j,r,c)	emit +wd, park j             lt.blue
+! 6    			stop                         red
+=========================================================
+)
+
 PALETTE=: '#',each b4f }: 0 : 0
 ffffff
-ffcccc
-ff0000
-ccffcc
+cccc00
 00ff00
-ccccff
+ccffcc
 0000ff
+ccccff
+ff0000
 )
 
 cell_colors=: 3 : 0
@@ -642,44 +677,106 @@ wd 'set states block ',": , 0,. <: $y
 wd 'set states background ',o4b ,y{PALETTE
 )
 
-0 :0
-syn_run=: 3 : 0
-smclear''
-smoutput '+++ syn_run: ENTER…' ,LF, '   cocurrent ''form210'''
-syn_close''
-wd FM
-fill_table real sjj
-cell_colors imag sjj
-wd 'pmove 0 22 400 0'
-wd 'psel syn; pshow'
+synopen=: 3 : 0
+open sw'~Gitsyn/(y).ijs'
 )
+
+synload=: 3 : 0
+ijrd=: IJRD
+load sw'(PARENTDIR)/(y).ijs'
+)
+
+rawtest=: 3 : 0
+smoutput 'NAME:' ; NAME
+smoutput < t
+smoutput synt t
+smoutput display sj
+smoutput date''
+)
+
+grok=: 3 : 0
+
+ijrd=: IJRD
+sjj=: sjc sj
+make_synt''
+start''
+)
+
+'==================== [syn] sample ===================='
+0 :0
+Saturday 21 September 2019  09:07:55
+-
+BUILT-IN SAMPLE
+currently: taken from tempsyn 10
+-
+syn0.ijs - the J parser: default x-arg of monad: Words (;:)
+from: https://www.jsoftware.com/help/dictionary/d332.htm
+)
+
+coclass 'syn'
+
+NAME=: 'Factory default for Words(;:)'
+
+SYMBOL=: (<;._1) '|*|SP|Az|N|B|9|(.)|(:)|('')'
+mj=: 256$0
+mj=: 1 (9,a.i.' ')}mj
+mj=: 2 ((a.i.'Aa')+/i.26)}mj
+mj=: 3 (a.i.'N')}mj
+mj=: 4 (a.i.'B')}mj
+mj=: 5 (a.i.'0123456789_')}mj
+mj=: 6 (a.i.'.')}mj
+mj=: 7 (a.i.':')}mj
+mj=: 8 (a.i.'''')}mj
+STATE=: (<;._1) '|whspace|punct`n|name|''N''|''NB''|''NB.''|number|openQT|closeQT|comment'
+
+sj=: _2]\"1 }.".;._2 (0 : 0) 
+' X    S    A    N    B    9    D    C    Q ']0
+ 1 1  0 0  2 1  3 1  2 1  6 1  1 1  1 1  7 1
+ 1 2  0 3  2 2  3 2  2 2  6 2  1 0  1 0  7 2
+ 1 2  0 3  2 0  2 0  2 0  2 0  1 0  1 0  7 2
+ 1 2  0 3  2 0  2 0  4 0  2 0  1 0  1 0  7 2
+ 1 2  0 3  2 0  2 0  2 0  2 0  5 0  1 0  7 2
+ 9 0  9 0  9 0  9 0  9 0  9 0  1 0  1 0  9 0
+ 1 4  0 5  6 0  6 0  6 0  6 0  6 0  1 0  7 4
+ 7 0  7 0  7 0  7 0  7 0  7 0  7 0  7 0  8 0
+ 1 2  0 3  2 2  3 2  2 2  6 2  1 2  1 2  7 0
+ 9 0  9 0  9 0  9 0  9 0  9 0  9 0  9 0  9 0
+)
+
+
+t1=: 'sum=. (i.3 4)+/ .*0j4+pru 4'
+t2=: 'sum=. (i.3 4)+/.*0j4+pru 4'
+t3=: 'sum=. (i.3 4)'
+t=: t3
+
+
+
 
 '==================== [syn] start ===================='
 0 :0
 Saturday 22 June 2019  18:36:26
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 VERSION=: '?.?.?'
 
+syn_z_=: start_syn_
+
 start=: 3 : 0
+
 
 load PARENTDIR,'/manifest.ijs'
 window_close''
 wd SYNFORM
-wd 'set echobuf text *',echobuf=: ,y
+wd 'set echobuf text *',echobuf=: ,t
 refresh''
 wd 'psel syn; pmove ' , ":POS
 onload_z_=: do
 i.0 0
 )
 
-syn_z_=: start_syn_
-
-immexj 0 : 0
-cocurrent'syn'
-smclear''
-synload 'syn0'
-smoutput PROMPT
+immexj }: 0 : 0
+cocurrent 'syn'
+start''
 )

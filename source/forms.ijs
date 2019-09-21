@@ -12,20 +12,10 @@ Tuesday 17 September 2019  09:33:27
 Replace pane listbox with: states table, as per: tempforms 209
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 POS=: 810 23 574 490
 POS=: 0 0 0 0	NB. topleft, min size necessary
-
-synopen=: 3 : 0
-open sw'~Gitsyn/(y).ijs'
-)
-
-synload=: 3 : 0
-NB. look for filename (y) as a sibling of the app script
-ijrd=: IJRD  NB. init to default, possibly reassigned by (y).ijs
-load sw'(PARENTDIR)/(y).ijs'
-)
 
 PROMPT=: 0 : 0
   sjjb sjj   NB. boxed symbolic sj
@@ -91,14 +81,14 @@ bin h;
  cc bnundo button;cn "undo";
  cc bnnewST button;cn "new STATE";
  cc bndelST button;cn "del STATE";
- cc bns button;cn "=s";
- cc bns1 button;cn "=s1";
- cc bns2 button;cn "=s2";
- cc bns3 button;cn "=s3";
+ cc bns button;cn "=t";
+ cc bns1 button;cn "=t1";
+ cc bns2 button;cn "=t2";
+ cc bns3 button;cn "=t3";
 bin z;
 bin h;
  cc bnTrace button;cn "trace";
- cc bn1 button;cn "bn1";
+ cc bn1 button;cn "PROMPT";
  cc bn2 button;cn "bn2";
  cc bn3 button;cn "bn3";
  cc bn4 button;cn "bn4";

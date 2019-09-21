@@ -4,35 +4,37 @@
 Tuesday 18 June 2019  22:47:28
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 syn_bngen_button=: gen  NB. generate source for: synt
 
 syn_bnundo_button=: undo
 
-syn_bnHelp_button=: 3 : 'tv SYNHELP'  NB. show a help panel
+syn_bn1_button=:	3 : 'textview_jqtide_ PROMPT'
+
+syn_bnHelp_button=: 3 : 'textview_jqtide_ SYNHELP'  NB. show a help panel
 
 syn_bns_button=: 3 : 0
-  NB. work on string: s
-wd 'set echobuf text *',echobuf=: s
+  NB. work on string: t
+wd 'set echobuf text *',echobuf=: t
 syn_echobuf_changed''
 )
 
 syn_bns1_button=: 3 : 0
-  NB. work on string: s1 (-->s)
-wd 'set echobuf text *',echobuf=: s1
+  NB. work on string: t1 (-->t)
+wd 'set echobuf text *',echobuf=: t1
 syn_echobuf_changed''
 )
 
 syn_bns2_button=: 3 : 0
-  NB. work on string: s2 (-->s)
-wd 'set echobuf text *',echobuf=: s2
+  NB. work on string: t2 (-->t)
+wd 'set echobuf text *',echobuf=: t2
 syn_echobuf_changed''
 )
 
 syn_bns3_button=: 3 : 0
-  NB. work on string: s3 (-->s)
-wd 'set echobuf text *',echobuf=: s3
+  NB. work on string: t3 (-->t)
+wd 'set echobuf text *',echobuf=: t3
 syn_echobuf_changed''
 )
 

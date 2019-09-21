@@ -4,14 +4,14 @@
 Wednesday 19 June 2019  00:40:18
 )
 
-cocurrent 'syn'
+coclass 'syn'
 
 msg=: sllog=: empty
 IJRD=: 0 _1 0 _1            NB. default ijrd
 DIRTY=: 0
 UCP=: 0                     NB. 1==use widechars 0==use ASCII
 OUTCODE=: ' [:]+#!'         NB. output codes as literals
-s=: s1=: s2=: s3=: 'unset'  NB. sample strings (some overridden)
+t=: t1=: t2=: t3=: '<UNSET>'  NB. sample strings (some overridden)
 'nix shf cmd opt'=: 0 1 2 4
 
 absent=: [: +./ 0 > [: nc ;:
@@ -149,7 +149,7 @@ smoutput '".''synt=: '',LF-.~ 0 :','0'
 smoutput (-y)&(]\) 5!:5 <'synt'
 smoutput ')'
 smoutput 'NB','.',(y-3)#'-'
-smoutput 'smoutput synt ',quote s
+smoutput 'smoutput synt ',quote t
 )
 
 gen2=: 3 : 0
@@ -169,7 +169,7 @@ if. UCP do. smoutput 'synt=: ((0;sj;mj) ;: ucp)"1'
 else.       smoutput 'synt=: ((0;sj;mj) ;: ])"1'
 end.
 smoutput li
-smoutput 'smoutput synt ',quote s
+smoutput 'smoutput synt ',quote t
 clone''
 smclear''
 smoutput <'synt -generated in new temp file'
@@ -204,6 +204,7 @@ end.
 )
 
 make_synt=: 3 : 0
+  NB. OPTIONS: omit ijrd if equal to default, omit mj, 0-->5
 if. UCP do.
   synt=: ((0;sj;mj;ijrd) ;: ucp)"1
 else.
@@ -214,13 +215,14 @@ i.0 0
 
 identify_z_=: identify=: 3 : 0
   NB. called by syn*.ijs on being loaded
+  NB. >>> DEPRECATED in favour of: grok
 make_synt''
 smoutput 'NAME:' ; NAME
 smoutput < y
 smoutput synt y
 smoutput display sj
 smoutput date''
-start s
+start t
 )
 
 sjc=: j./"1    NB. sj (y) as complex table
@@ -350,14 +352,27 @@ z=. wd 'get states table'
 ($sjj) $ b4f z rplc DEL ; LF
 )
 
+0 :0
+=========================================================
+OUTPUT CODES
+  0    no output            pass over                     white
+[ 1    j=.i		mark start of wd             brown
+: 2    j=.i  [ ew(i,j,r,c)	emit wd, mark start of next  dk.green
+] 3    j=._1 [ ew(i,j,r,c)	emit wd, park j              lt.green
++ 4    j=.i  [ ev(i,j,r,c)	emit +wd, mark start of next dk.blue
+# 5    j=._1 [ ev(i,j,r,c)	emit +wd, park j             lt.blue
+! 6    			stop                         red
+=========================================================
+)
+
 PALETTE=: '#',each b4f }: 0 : 0
 ffffff
-ffcccc
-ff0000
-ccffcc
+cccc00
 00ff00
-ccccff
+ccffcc
 0000ff
+ccccff
+ff0000
 )
 
 cell_colors=: 3 : 0
@@ -366,15 +381,28 @@ wd 'set states block ',": , 0,. <: $y
 wd 'set states background ',o4b ,y{PALETTE
 )
 
-0 :0
-syn_run=: 3 : 0	NB. UNUSED in this app <<<<<<<<<<<<<<<<<<<<<<<<
-smclear''
-smoutput '+++ syn_run: ENTER…' ,LF, '   cocurrent ''form210'''
-NB.
-syn_close''
-wd FM
-fill_table real sjj
-cell_colors imag sjj
-wd 'pmove 0 22 400 0'
-wd 'psel syn; pshow'	NB. paranoid psel, but good to use
+synopen=: 3 : 0
+open sw'~Gitsyn/(y).ijs'
+)
+
+synload=: 3 : 0	NB. >>>DEPRECATED
+NB. look for filename (y) as a sibling of the app script
+ijrd=: IJRD  NB. init to default, possibly reassigned by (y).ijs
+load sw'(PARENTDIR)/(y).ijs'
+)
+
+rawtest=: 3 : 0
+smoutput 'NAME:' ; NAME
+smoutput < t
+smoutput synt t
+smoutput display sj
+smoutput date''
+)
+
+grok=: 3 : 0
+  NB. called after sample sj loaded into _syn_
+ijrd=: IJRD  NB. init to default, possibly reassigned by (y).ijs
+sjj=: sjc sj
+make_synt''
+start''
 )
